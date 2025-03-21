@@ -214,12 +214,13 @@ return {
         })
       end,
 
-      -- PHP
-      ["intelephense"] = function()
-        lspconfig.intelephense.setup({
-          capabilities = capabilities,
-        })
-      end,
+	["intelephense"] = function()
+	  lspconfig.intelephense.setup({
+		capabilities = capabilities,
+		-- AJOUT : spécifier les filetypes
+		filetypes = { "php", "blade", "php.blade" },
+	  })
+	end,
 
       -- SQL
       ["sqlls"] = function()

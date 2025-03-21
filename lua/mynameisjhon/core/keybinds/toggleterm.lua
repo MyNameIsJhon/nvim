@@ -23,3 +23,5 @@ vim.cmd('autocmd! TermOpen term://*toggleterm#* lua vim.keymap.set("t", "<C-w>",
 keymap.set('n', '<leader>tv', ':ToggleTerm direction=vertical<CR>', opts)
 keymap.set('n', '<leader>th', ':ToggleTerm direction=horizontal<CR>', opts)
 keymap.set('n', '<leader>tt', ':ToggleTerm direction=float<CR>', opts)
+-- En mode terminal, passer en mode normal puis fermer le buffer
+vim.keymap.set('t', '<leader>tkx', [[<C-\><C-n>:bd!<CR>]], { noremap = true, silent = true })
