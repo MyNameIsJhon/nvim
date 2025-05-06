@@ -16,6 +16,7 @@ return {
 
     -- Ajoutez ici les plugins pour l'auto-pairing et l'auto-tagging des balises
     "windwp/nvim-autopairs",
+	"zbirenbaum/copilot-cmp",
     {
       "windwp/nvim-ts-autotag",
       config = function()
@@ -49,6 +50,7 @@ return {
         ["<CR>"] = cmp.mapping.confirm({ select = false }),
       }),
       sources = cmp.config.sources({
+        { name = "copilot" },    -- ← Copilot en premier
         { name = "nvim_lsp" },
         { name = "luasnip" },
         { name = "buffer" },
