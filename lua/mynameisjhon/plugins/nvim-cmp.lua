@@ -13,16 +13,7 @@ return {
     "saadparwaiz1/cmp_luasnip",
     "rafamadriz/friendly-snippets",
     "onsails/lspkind.nvim",
-
-    -- Ajoutez ici les plugins pour l'auto-pairing et l'auto-tagging des balises
-    "windwp/nvim-autopairs",
-	"zbirenbaum/copilot-cmp",
-    {
-      "windwp/nvim-ts-autotag",
-      config = function()
-        require("nvim-ts-autotag").setup()
-      end,
-    },
+    "zbirenbaum/copilot-cmp",
   },
 
   config = function()
@@ -50,7 +41,7 @@ return {
         ["<CR>"] = cmp.mapping.confirm({ select = false }),
       }),
       sources = cmp.config.sources({
-        { name = "copilot" },    -- ← Copilot en premier
+        { name = "copilot" },
         { name = "nvim_lsp" },
         { name = "luasnip" },
         { name = "buffer" },
@@ -63,11 +54,5 @@ return {
         }),
       },
     })
-
-    -- Configuration de nvim-autopairs pour compléter les paires avec cmp
-    local npairs = require("nvim-autopairs")
-    npairs.setup({})
-    local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-    cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
   end,
 }

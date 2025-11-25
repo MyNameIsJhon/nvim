@@ -1,15 +1,13 @@
 return {
   "williamboman/mason.nvim",
   dependencies = {
-	{ "williamboman/mason-lspconfig.nvim", version = "v1.29.0" },
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
+	"williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
     "hrsh7th/cmp-nvim-lsp",
   },
   config = function()
     local mason = require("mason")
     local mason_lspconfig = require("mason-lspconfig")
-    local mason_tool_installer = require("mason-tool-installer")
     local lspconfig = require("lspconfig")
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
@@ -36,17 +34,7 @@ return {
         "bashls",
         "sqlls",
       },
-    })
-
-    mason_tool_installer.setup({
-      ensure_installed = {
-        "prettier",
-        "stylua",
-        "isort",
-        "black",
-        "pylint",
-        "eslint_d",
-      },
+      automatic_installation = true,
     })
 
     mason_lspconfig.setup_handlers({
@@ -60,12 +48,11 @@ return {
         lspconfig.pylsp.setup({
           capabilities = capabilities,
           on_attach = function(client, bufnr)
-            vim.lsp.handlers["textDocument/publishDiagnostics"] =
-              vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-                virtual_text = false,
-                signs = true,
-                update_in_insert = false,
-              })
+            vim.diagnostic.config({
+              virtual_text = false,
+              signs = true,
+              update_in_insert = false,
+            })
           end,
           settings = {
             pylsp = {

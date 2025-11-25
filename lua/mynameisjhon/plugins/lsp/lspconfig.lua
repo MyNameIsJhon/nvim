@@ -11,11 +11,6 @@ return {
 		{ "folke/neodev.nvim", opts = {} },
 	},
 	config = function()
-		-- Import LSP-related plugins
-		local lspconfig = require("lspconfig")
-		local mason_lspconfig = require("mason-lspconfig")
-		local cmp_nvim_lsp = require("cmp_nvim_lsp")
-
 		-- Keybindings LSP communs
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
@@ -63,9 +58,6 @@ return {
 			end,
 		})
 
-		-- Autocompletion capabilities
-		local capabilities = cmp_nvim_lsp.default_capabilities()
-
 		-- Change the Diagnostic symbols in the sign column (gutter)
 		local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
 		for type, icon in pairs(signs) do
@@ -73,20 +65,5 @@ return {
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 		end
 
-		-- IMPORTANT: Assure-toi que Mason installe ces serveurs-là (voir mason.lua plus bas)
-		mason_lspconfig.setup({
-			-- Tu peux adapter la liste ci-dessous.
-			-- On y ajoute notamment tsserver, bashls, html, cssls, intelephense, sqls et asm-lsp.
-			ensure_installed = {
-				"clangd", -- C/C++
-				"pylsp", -- Python
-				"lua_ls", -- Lua (Neovim config)
-				"bashls", -- Bash
-				"html", -- HTML
-				"cssls", -- CSS
-				"intelephense", -- PHP
-				"sqlls", -- SQL (MySQL, PostgreSQL, etc.)
-			},
-		})
 	end,
 }

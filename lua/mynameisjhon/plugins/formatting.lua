@@ -19,12 +19,21 @@ return {
         liquid = { "prettier" },
         lua = { "stylua" },
         python = { "isort", "black" },
+        -- C et headers : on laisse c_formatter_42 gérer ça (keybind F2)
+        -- Ne pas formatter automatiquement pour respecter la norme 42
       },
-      format_on_save = {
-        lsp_fallback = false,
-        async = false,
-        timeout_ms = 1000,
-      },
+      format_on_save = function(bufnr)
+        -- Ne pas formatter automatiquement les fichiers C/H
+        local filetype = vim.bo[bufnr].filetype
+        if filetype == "c" or filetype == "h" then
+          return nil
+        end
+        return {
+          lsp_fallback = true,
+          async = false,
+          timeout_ms = 1000,
+        }
+      end,
     })
 
     vim.keymap.set({ "n", "v" }, "<leader>mp", function()

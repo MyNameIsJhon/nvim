@@ -19,7 +19,7 @@ keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", {desc = "Open new tab"})
 keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", {desc= "Close current tab"})
 keymap.set("n", "<leader>tm", "<cmd>tabn<CR>", {desc= "Go to next tab"})
 keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", {desc= "Go to previous tab"})
-keymap.set("n", "<leader>tf", "<cmd>tabnew<CR>", {desc= "Open current bufer in new tab"})
+keymap.set("n", "<leader>tb", "<cmd>tabnew %<CR>", {desc= "Open current buffer in new tab"})
 
 
 
@@ -27,11 +27,8 @@ keymap.set("n", "<leader>tf", "<cmd>tabnew<CR>", {desc= "Open current bufer in n
 
 
 
-keymap.set('n', '<leader>tv', ':ToggleTerm direction=vertical<CR>', opts)
-keymap.set('n', '<leader>th', ':ToggleTerm direction=horizontal<CR>', opts)
-keymap.set('n', '<leader>tf', ':ToggleTerm direction=float<CR>', opts)
 
 
 --gen vim keybinds
 
-vim.keymap.set({ 'n', 'v' }, '<leader>lm', ':Gen<CR>')
+vim.keymap.set({ 'n', 'v' }, '<leader>lm', ':Gen<CR>', {desc = "Gen AI"})
