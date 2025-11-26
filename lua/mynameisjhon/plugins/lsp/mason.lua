@@ -33,6 +33,7 @@ return {
         "intelephense",
         "bashls",
         "sqlls",
+        "ts_ls",  -- TypeScript/JavaScript (remplace tsserver)
       },
       automatic_installation = true,
     })
