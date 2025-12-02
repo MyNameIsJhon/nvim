@@ -37,7 +37,19 @@ opt.splitright = true --split vertical window to the right
 opt.splitbelow = true -- split horizontal window to the bottom
 
 --turn off swapfile
-
-
 opt.swapfile = false
+
+-- Filtrer les warnings de dépréciation LSP
+local notify = vim.notify
+vim.notify = function(msg, level, opts)
+  -- Ignorer les warnings spécifiques de lspconfig et tsserver
+  if type(msg) == "string" then
+    if msg:match("lspconfig.*deprecated") or
+       msg:match("tsserver.*deprecated") or
+       msg:match("require.*lspconfig.*deprecated") then
+      return
+    end
+  end
+  notify(msg, level, opts)
+end
 
